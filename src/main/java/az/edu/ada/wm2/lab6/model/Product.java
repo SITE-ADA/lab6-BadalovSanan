@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
-import az.edu.ada.wm2.lab6.model.Category;
 
 @Entity
 @Table(name = "products")
