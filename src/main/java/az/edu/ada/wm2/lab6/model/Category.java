@@ -2,7 +2,7 @@ package az.edu.ada.wm2.lab6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,5 +22,5 @@ public class Category {
 
     // This is the back reference to products
     @ManyToMany(mappedBy = "categories")
-    private Set<Product> products;
+    private List<Product> products;
 }

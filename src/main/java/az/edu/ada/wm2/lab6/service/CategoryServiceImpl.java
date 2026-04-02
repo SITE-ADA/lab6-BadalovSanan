@@ -12,6 +12,7 @@ import az.edu.ada.wm2.lab6.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,13 @@ public class CategoryServiceImpl implements CategoryService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
 
+        if (product.getCategories() == null) {
+            product.setCategories(new ArrayList<>());
+        }
+        if (category.getProducts() == null) {
+            category.setProducts(new ArrayList<>());
+        }
+
         product.getCategories().add(category);
         category.getProducts().add(product);
         productRepository.save(product);
@@ -62,6 +70,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<ProductResponseDto> getProducts(java.util.UUID categoryId) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));
+
+        if (category.getProducts() == null) {
+            return new ArrayList<>();
+        }
 
         return category.getProducts().stream()
                 .map(productMapper::toResponseDto)
