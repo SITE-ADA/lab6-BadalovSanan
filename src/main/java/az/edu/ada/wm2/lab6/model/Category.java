@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
 import java.util.UUID;
-import java.az.edu.ada.wm2.lab6.model.Product;
+import az.edu.ada.wm2.lab6.model.Product;
 
 @Entity
 @Table(name = "categories")
